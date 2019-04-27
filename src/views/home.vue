@@ -1,5 +1,8 @@
 <template>
   <div>
+    <!-- 讀取的效果 -->
+    <loading loader="bars" color="#32312f" :active.sync="isLoading"></loading>
+
     <homeTop/>
     <why/>
     <noreson/>
@@ -27,6 +30,7 @@
     },
     data() {
       return {
+        isLoading: false,
       }
     }
   }

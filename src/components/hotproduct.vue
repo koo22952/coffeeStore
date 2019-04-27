@@ -1,5 +1,8 @@
 <template>
   <div>
+    <!-- 讀取的效果 -->
+    <loading loader="bars" color="#32312f" :active.sync="isLoading"></loading>
+
     <div class="hotProduct" v-if="newProducts.length">
       <div class="title">
         <p>熱銷商品</p>
@@ -86,13 +89,11 @@
       getProducts() {
         const _this = this
         const api = `${process.env.APIPATH}/product?is_enabled=1`
-        // _this.isLoading = true
+        _this.isLoading = true
         this.$http.get(api).then((response) => {
-          // console.log(response.data)
           _this.products = response.data
-          // setTimeout(() => {
-          // _this.isLoading = false
-          // }, 500);
+          _this.isLoading = false
+
         })
       },
       getProduct(id) {
@@ -102,15 +103,12 @@
           _this.$router.push(`/productdetail/${id}`)
           _this.$emit('getDetail', id)
           _this.getProducts()
-          // setTimeout(() => {
-          // _this.isLoading = false
-          // }, 800);
         })
       },
       addCart(item, qty = 1) {
         const _this = this
         const api = `${process.env.APIPATH}/cart`
-        // _this.isLoading = true
+        _this.isLoading = true
         let data = Object.assign({}, item);
         data.qty = qty
         data.id = ''
@@ -118,6 +116,7 @@
           _this.$bus.$emit('cartlength', {
             length: 1
           })
+          _this.isLoading = false
         })
       },
     },
@@ -197,7 +196,7 @@
         .img {
           cursor: pointer;
           position: relative;
-          max-width: 260px;
+          min-height: 260px;
           margin: 0 auto;
           padding: 10px;
           &::after {

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <!-- 讀取的效果 -->
+    <loading loader="bars" color="#32312f" :active.sync="isLoading" z-index="99999"></loading>
+
     <div class="nav px-3 position-fixed" :class="{'navmove': scroll}">
       <div class="container-fluid">
         <div class="row align-items-center">
@@ -199,7 +202,8 @@
         loginStatus: false,
         cartList: [],
         cartLength: 0,
-        userId: ''
+        userId: '',
+        isLoading: false
       }
     },
     computed: {
@@ -249,29 +253,30 @@
         this.userId = ''
       },
       openModal() {
+        // this.getcart();
         $('#cartModal').modal('show')
-        this.getcart();
       },
       getcart() {
         const _this = this
         const api = `${process.env.APIPATH}/cart`
-        // _this.isLoading = true
+        _this.isLoading = true
         _this.$http.get(api).then((response) => {
           _this.cartLength = response.data.length
           _this.cartList = response.data
           // setTimeout(() => {
-          //   _this.isLoading = false
+          _this.isLoading = false
           // }, 800);
         })
       },
       removeCart(id) {
         const _this = this
         const api = `${process.env.APIPATH}/cart/${id}`
-
+        _this.isLoading = true
         _this.$http.delete(api).then((response) => {
           _this.getcart()
           // 讓chockout 知道有做刪除的動作
           _this.$bus.$emit('delitem', {})
+          _this.isLoading = false
         })
       }
     },
@@ -292,7 +297,7 @@
       const _this = this
       let userId = localStorage.getItem('userId')
       _this.userId = userId
-      if (userId == null) {
+      if (userId == null || userId == '') {
         _this.loginStatus = false
       } else {
         _this.loginStatus = true
@@ -448,6 +453,14 @@
     transform: translateY(-13px) rotate(-45deg);
     background-color: #ececec;
   }
+
+  // .bars {
+  //   z-index: 99999;
+  //   position: fixed;
+  // }
+  // .cartModal {
+  //   z-index: 999;
+  // }
 
   // 漢堡內容
   .nav_drawer {
