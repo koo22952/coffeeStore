@@ -1,14 +1,14 @@
 <template>
   <div>
     <!-- 讀取的效果 -->
-    <loading loader="bars" color="#32312f" :active.sync="isLoading" z-index="99999"></loading>
+    <loading loader="bars" color="#32312f" :active.sync="isLoading"></loading>
 
     <div class="nav px-3 position-fixed" :class="{'navmove': scroll}">
       <div class="container-fluid">
         <div class="row align-items-center">
           <div class="col-xl-4 col-lg-3 col-md-2 col d-flex justify-content-md-center">
             <h1>
-              <router-link class="logo" to="/">咖啡沒了</router-link>
+              <router-link class="logo" to="/">品咖啡</router-link>
             </h1>
           </div>
           <div class="menu_header d-md-flex col d-none">
@@ -51,9 +51,7 @@
                 <i class="fas fa-door-open" v-if="loginStatus" @click="signout"></i>
               </li>
               <li class="position-relative">
-                <i @click.prevent="openModal" class="fas fa-shopping-cart fa-lg"></i>
-                <!-- data-toggle="modal"
-                data-target="#cartModal"-->
+                <i data-toggle="modal" data-target="#cartModal" class="fas fa-shopping-cart fa-lg"></i>
 
                 <span
                   class="badge badge-danger rounded-circle position-absolute"
@@ -117,7 +115,10 @@
       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
         <div class="modal-content p-3">
           <div class="modal-header text-center position-relative">
-            <h3 class="modal-title w-100" id="cartModalTitle">購物車</h3>
+            <h3 class="modal-title w-100" id="cartModalTitle">
+              購物車
+              <i class="fas fa-spinner fa-spin" v-if="isLoadingDel"></i>
+            </h3>
             <button
               type="button"
               class="close position-absolute"
@@ -128,7 +129,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="bg-light text-center py-4" v-if="!cartLength">
+            <div class="bg-light text-center py-4" v-if="!cartList.length">
               <h6 class="display-4">購物車是空的!</h6>
               <img src="../assets/img/shopping-cart.svg" width="100" alt class="mt-3">
             </div>
@@ -157,7 +158,11 @@
                 </div>
               </div>
               <div class="col-1 d-flex align-items-center justify-content-center">
-                <i class="fas fa-trash-alt fa-lg p-1" @click="removeCart(item.id)"></i>
+                <i
+                  class="fas fa-trash-alt fa-lg p-1"
+                  :class="{'active':isLoadingDel}"
+                  @click="removeCart(item.id)"
+                ></i>
               </div>
             </div>
           </div>
@@ -176,13 +181,6 @@
               @click="closeModal(false)"
               v-else
             >結帳去</button>
-            <!-- <router-link
-              class="btn btn-btncolor w-100"
-              v-model="newCartList"
-              v-else
-              @click.prevent="closeModal"
-              to="/checkout"
-            >結帳去</router-link>-->
           </div>
         </div>
       </div>
@@ -192,6 +190,7 @@
 
 <script>
   import $ from 'jquery'
+  import { resolve } from 'q';
 
   export default {
     name: 'navbar',
@@ -203,7 +202,8 @@
         cartList: [],
         cartLength: 0,
         userId: '',
-        isLoading: false
+        isLoading: false,
+        isLoadingDel: false
       }
     },
     computed: {
@@ -252,32 +252,36 @@
         this.loginStatus = false
         this.userId = ''
       },
-      openModal() {
-        // this.getcart();
-        $('#cartModal').modal('show')
-      },
-      getcart() {
+      getcart(item) {
         const _this = this
         const api = `${process.env.APIPATH}/cart`
-        _this.isLoading = true
+
         _this.$http.get(api).then((response) => {
-          _this.cartLength = response.data.length
-          _this.cartList = response.data
-          // setTimeout(() => {
-          _this.isLoading = false
-          // }, 800);
+          console.log(response.data)
+          if (item) {
+            _this.cartList = response.data
+          } else {
+            _this.cartLength = response.data.length
+            _this.cartList = response.data
+          }
         })
       },
       removeCart(id) {
         const _this = this
         const api = `${process.env.APIPATH}/cart/${id}`
-        _this.isLoading = true
-        _this.$http.delete(api).then((response) => {
-          _this.getcart()
-          // 讓chockout 知道有做刪除的動作
-          _this.$bus.$emit('delitem', {})
-          _this.isLoading = false
-        })
+        if (!_this.isLoadingDel) {
+          _this.isLoadingDel = true
+          _this.$http.delete(api).then((response) => {
+            _this.getcart()
+            // 讓chockout 知道有做刪除的動作
+            _this.$bus.$emit('delitem', {})
+            // _this.cartLength--
+            setTimeout(() => {
+              _this.isLoadingDel = false
+            }, 500)
+
+          })
+        }
       }
     },
     mounted() {
@@ -297,17 +301,22 @@
       const _this = this
       let userId = localStorage.getItem('userId')
       _this.userId = userId
+
       if (userId == null || userId == '') {
         _this.loginStatus = false
       } else {
         _this.loginStatus = true
       }
+
       this.getcart();
+
       this.$bus.$on('cartlength', event => {
         _this.cartLength += event.length
+        _this.getcart(true)
       })
       this.$bus.$on('fakecartlength', event => {
-        _this.cartLength = event.length
+        _this.getcart(true)
+        _this.cartLength = false
       })
       this.$bus.$on('singin', event => {
         _this.loginStatus = event.singin
@@ -351,12 +360,14 @@
 
     .logo {
       display: block;
-      background: url("../assets/img/Logo.png");
-      width: 114px;
-      height: 51px;
+      background: url("../assets/img/LOGO.svg");
+      width: 78px;
+      height: 43px;
       text-indent: -9999px;
       overflow: hidden;
       white-space: nowrap;
+      background-position: center content;
+      background-repeat: no-repeat;
     }
     .menu_header {
       li {
@@ -404,6 +415,14 @@
     }
   }
 
+  @media (max-width: 768px) {
+    .nav {
+      &::before {
+        transform: scaleY(1);
+      }
+    }
+  }
+
   //modal
   .close {
     font-size: 18px;
@@ -413,6 +432,15 @@
 
   .fa-trash-alt {
     cursor: pointer;
+  }
+
+  //在移除購物車時垃圾桶得狀態
+  .active {
+    cursor: wait;
+    color: lightgrey;
+    &:hover {
+      color: lightgrey;
+    }
   }
 
   // 漢堡選單
@@ -453,14 +481,6 @@
     transform: translateY(-13px) rotate(-45deg);
     background-color: #ececec;
   }
-
-  // .bars {
-  //   z-index: 99999;
-  //   position: fixed;
-  // }
-  // .cartModal {
-  //   z-index: 999;
-  // }
 
   // 漢堡內容
   .nav_drawer {

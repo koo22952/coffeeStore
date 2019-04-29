@@ -2,6 +2,24 @@
   <svg
     width="100%"
     height="100%"
+    viewBox="0 0 1066 1006"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g id="bg_homeTop_right">
+      <path
+        id="bg_homeTop_right_2"
+        d="M631.647 566.413C523.548 675.832 341.5 696 191 696C-75.9801 696 -250.93 562.301 -446.116 369.469C-801.724 18.15 -895.746 -463.276 -656.122 -705.825C-416.497 -948.375 66.0334 -860.2 421.641 -508.881C663.861 -269.582 872 -78 784 275C773.522 317.03 708.053 489.074 631.647 566.413Z"
+        fill="#DBA976"
+      ></path>
+    </g>
+  </svg>
+</template>
+
+
+  <svg
+    width="100%"
+    height="100%"
     viewBox="0 0 1010 1056"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -28,4 +46,3 @@
       </clipPath>
     </defs>
   </svg>
-</template>

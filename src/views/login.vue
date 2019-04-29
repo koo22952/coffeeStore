@@ -42,7 +42,7 @@
               >
               <span class="text-danger" style="font-size:14px">{{ errors.first('密碼') }}</span>
             </div>
-            <button type="submit" class="btn btn-maincolor w-100 rounded-0">購物去！</button>
+            <button type="submit" class="btn btn-btncolor w-100 rounded-0">購物去！</button>
           </form>
         </div>
         <div class="singup" v-else>

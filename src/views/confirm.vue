@@ -1,5 +1,6 @@
 <template>
   <div>
+    <loading loader="bars" color="#32312f" :active.sync="isLoading"></loading>
     <div class="container top">
       <div class="checkout-nav">
         <div class="step" href="#">
@@ -100,13 +101,15 @@
 
 <script>
   import $ from 'jquery'
+
   export default {
     name: 'confirm',
     data() {
       return {
         order: {},
         products: [],
-        user: {}
+        user: {},
+        isLoading: false
       }
     },
     computed: {
@@ -139,26 +142,25 @@
     },
     methods: {
       goto() {
-        // this.delAllCart()
-        // this.$bus.$emit('fakecartlength', {
-        //   length: 0
-        // })
         this.$router.push('/')
       },
       getOrder() {
         const _this = this
+        _this.isLoading = true
         let id = this.$route.params.id
         const api = `${process.env.APIPATH}/customerorder/${id}`
         _this.$http.get(api).then((response) => {
           _this.order = response.data
           _this.products = response.data.products
           _this.user = response.data.user
+          _this.isLoading = false
         })
       },
       checkpaid() {
         const _this = this
+        //確保購物車裡面為空的
+        _this.$bus.$emit('fakecartlength', {})
         let id = this.$route.params.id
-        // const goWhere = $(".checkout-nav").position()
         const api = `${process.env.APIPATH}/customerorder/${id}`
         const data = {
           is_paid: true
@@ -169,25 +171,43 @@
         $('html, body').animate({
           scrollTop: 0
         }, 600);
+
       },
-      //刪掉全部購物車資料
+      // 刪掉全部購物車資料
       delAllCart() {
         const _this = this
-        let cartList = _this.cartList
-
         const api = `${process.env.APIPATH}/cart/`
-
         _this.$http.get(api).then((response) => {
-          // 因為JSON SERVER 一次只能刪除一筆,所以用forEach讓他遍歷,再將數值傳給購物車
           response.data.forEach(n => {
             const id = n.id
-            const url = `${api}${id}`
+            const url = `${api}/${id}`
             _this.$http.delete(url).then((response) => {
-              // // console.log('已刪除')
+              console.log('del')
+              console.log(response.data)
+              _this.$bus.$emit('fakecartlength', {})
             })
-          });
+          })
+          // 因為JSON SERVER 一次只能刪除一筆,所以用forEach讓他遍歷,再將數值傳給購物車
+          // var promise = () => {
+          //   return new Promise((resolve, reject) => {
+          //     response.data.forEach(n => {
+          //       const id = n.id
+          //       const url = `${api}/${id}`
+          //       _this.$http.delete(url).then((response) => {
+          //         console.log('del')
+          //         _this.$bus.$emit('fakecartlength', {})
+          //         resolve()
+          //       }).catch(error => {
+          //         console.log(error);
+          //       })
+          //     });
+          //   })
+          // }
+          // promise().then(() => {
+          //   _this.$bus.$emit('fakecartlength', {})
+          // })
         })
-      }
+      },
     },
     created() {
       this.getOrder()

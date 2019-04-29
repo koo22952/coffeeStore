@@ -25,7 +25,7 @@
       >
       <span class="text-danger" style="font-size:14px">{{ errors.first('password') }}</span>
     </div>
-    <button type="submit" class="btn btn-maincolor w-100 rounded-0">立即加入！</button>
+    <button type="submit" class="btn btn-btncolor w-100 rounded-0">立即加入！</button>
   </form>
 </template>
 

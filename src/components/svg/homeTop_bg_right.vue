@@ -2,6 +2,28 @@
   <svg
     width="100%"
     height="100%"
+    viewBox="0 0 602 571"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g id="bg_homeTop_right">
+      <ellipse
+        id="bg_homeTop_right_2"
+        cx="300.877"
+        cy="285.108"
+        rx="263"
+        ry="243.621"
+        transform="rotate(9.87293 300.877 285.108)"
+        fill="#DBA976"
+      ></ellipse>
+    </g>
+  </svg>
+</template>
+
+
+  <svg
+    width="100%"
+    height="100%"
     viewBox="0 0 542 531"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -21,6 +43,3 @@
       </g>
     </g>
   </svg>
-</template>
-
-

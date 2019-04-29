@@ -1,5 +1,7 @@
 <template>
   <div>
+    <loading loader="bars" color="#32312f" :active.sync="isLoading"></loading>
+
     <div class="container-fluid">
       <div class="checkout_nav">
         <div class="step" href="#">
@@ -34,6 +36,7 @@
                 aria-expanded="true"
                 aria-controls="collapseOne"
               >顯示購物車細節</button>
+
               <span class="h3 ml-auto m-1">{{cartTotal | currency}}</span>
             </div>
 
@@ -60,13 +63,8 @@
                 <tbody>
                   <tr v-for="(item,key) in newCartList" :key="item.id">
                     <th scope="row" class="align-middle">
-                      <a
-                        href="#"
-                        data-toggle="modal"
-                        data-target="#cartDelete"
-                        :data-title="item.title"
-                      >
-                        <i class="fas fa-trash-alt fa-lg" @click="removeCart(item.id)"></i>
+                      <a href="#" :data-title="item.title" @click.prevent="removeCart(item.id)">
+                        <i class="fas fa-trash-alt fa-lg"></i>
                       </a>
                     </th>
                     <th>
@@ -196,6 +194,7 @@
           message: '',
           products: [],
         },
+        isLoading: false
       }
     },
     computed: {
@@ -204,11 +203,9 @@
         let data = this.cartList.map(n => {
           let m = Object.assign({}, n);
           m.price
-
           if (m.sale_price == undefined || m.sale_price == "") {
             m.sale_price = m.origin_price
           }
-
           if (parseInt(m.origin_price) > parseInt(m.sale_price)) {
             m.price = m.sale_price
           } else {
@@ -233,20 +230,27 @@
       getcart() {
         const _this = this
         const api = `${process.env.APIPATH}/cart`
+        _this.isLoading = true
+
         _this.$http.get(api).then((response) => {
           _this.cartList = response.data
-          _this.form.products = response.data
+          _this.isLoading = false
         })
       },
       //刪掉單一項目
       removeCart(id) {
         const _this = this
         const api = `${process.env.APIPATH}/cart/${id}`
+
+        _this.isLoading = true
         _this.$http.delete(api).then((response) => {
-          _this.$bus.$emit('cartlength', {
-            length: -1
-          })
           _this.getcart()
+          _this.isLoading = false
+          setTimeout(() => {
+            _this.$bus.$emit('cartlength', {
+              length: -1
+            })
+          }, 1000)
         })
       },
       createdOrder() {
@@ -256,24 +260,21 @@
         let data = _this.form
         data.create_at = timestamp
         data.total = _this.cartTotal
+        data.products = _this.cartList
         // data.menber
-
         // this.$validator.validate().then((result) => {
         // if (result) {
-
-        //在這邊刪除全部的購物車資料跟把資料轉出去的時候會一直當掉,所以先用一個假資料把購物車的紅色取消再去下個頁面刪掉購物車內容
+        _this.isLoading = true
         _this.$http.post(api, data).then((response) => {
           _this.$router.push(`/confirm/${response.data.id}`)
-          _this.$bus.$emit('fakecartlength', {
-            length: 0
-          })
+          _this.$bus.$emit('fakecartlength', {})
+          _this.isLoading = false
         })
         // } else {
         // console.log('欄位不完整')
         // }
         // })
       },
-
     },
     created() {
       this.getcart()

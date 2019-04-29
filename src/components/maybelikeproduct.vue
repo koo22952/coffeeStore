@@ -1,5 +1,7 @@
 <template>
   <div>
+    <loading loader="bars" color="#32312f" :active.sync="isLoading"></loading>
+
     <div class="product_list">
       <p class="maybe">你可能會喜歡</p>
       <!-- swiper -->
@@ -75,6 +77,7 @@
           }
         },
         products: [],
+        isLoading: false,
       }
     },
     methods: {
@@ -89,9 +92,7 @@
         // _this.isLoading = true
         _this.$http.get(api).then((response) => {
           _this.products = response.data
-          // setTimeout(() => {
           // _this.isLoading = false
-          // }, 500);
         })
       },
       getProduct(id) {
@@ -101,23 +102,20 @@
           _this.$router.push(`/productdetail/${id}`)
           _this.$emit('getDetail', id)
           _this.getProducts()
-          // setTimeout(() => {
-          // _this.isLoading = false
-          // }, 800);
         })
       },
       addCart(item, qty = 1) {
         const _this = this
         const api = `${process.env.APIPATH}/cart`
-        // _this.isLoading = true
+        _this.isLoading = true
         let data = Object.assign({}, item);
         data.qty = qty
         data.id = ''
         _this.$http.post(api, data).then((response) => {
-                    _this.$bus.$emit('cartlength', {
+          _this.$bus.$emit('cartlength', {
             length: 1
           })
-          // _this.isLoading = false
+          _this.isLoading = false
         })
       }
     },

@@ -28,7 +28,7 @@
           <ul class="items">
             <li class="all">
               <!-- class="cateactive" -->
-              <a href="#" @click.prevent="filterCategories('all')">所有商品</a>
+              <a href="#" @click.prevent="filterCategories('all')">全部商品</a>
             </li>
             <li class="item">
               <a href="#" @click.prevent="filterCategories('典藏單品')">典藏單品</a>
@@ -84,7 +84,6 @@
                 v-for="page in pages"
                 :key="page"
               >
-                <!-- currentPage=page-1 -->
                 <a href="#" class="page-link" @click.prevent="chousePage(page)">{{page}}</a>
               </li>
               <li class="page-item" :class="{'disabled':currentPage === filterPagination.length-1}">
@@ -139,7 +138,7 @@
         isLoading: false,
         pages: 0,  //一共會有幾頁
         currentPage: 0,  //目前在第幾頁
-        menu: '所有商品'
+        menu: '全部商品'
       }
     },
     computed: {
@@ -164,16 +163,20 @@
       // 點擊Categories做出篩選
       filterCategories(item) {
         const _this = this
+        _this.isLoading = true
         if (item === 'all') {
           _this.filterData = _this.products
           _this.menu = '全部商品'
-          return
         } else {
           _this.filterData = _this.products.filter(n => {
             return n.category == item
+
           })
           _this.menu = item
         }
+        setTimeout(() => {
+          _this.isLoading = false
+        }, 800);
       },
       //查看是否是特價的
       is_sale(item) {
@@ -196,14 +199,14 @@
       getProducts() {
         const _this = this
         const api = `${process.env.APIPATH}/product?is_enabled=1`
-        // _this.isLoading = true
+        _this.isLoading = true
         this.$http.get(api).then((response) => {
           // console.log(response.data)
           _this.products = response.data
           _this.filterData = response.data
-          // setTimeout(() => {
-          // _this.isLoading = false
-          // }, 500);
+          setTimeout(() => {
+            _this.isLoading = false
+          }, 500);
         })
       },
       getProduct(id) {
@@ -220,15 +223,15 @@
       addCart(item, qty = 1) {
         const _this = this
         const api = `${process.env.APIPATH}/cart`
-        // _this.isLoading = true
+        _this.isLoading = true
         let data = Object.assign({}, item);
         data.qty = qty
         data.id = ''
         _this.$http.post(api, data).then((response) => {
+          _this.isLoading = false
           _this.$bus.$emit('cartlength', {
             length: 1
           })
-          // _this.isLoading = false
         })
       }
     },

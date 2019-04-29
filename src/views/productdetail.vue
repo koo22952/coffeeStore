@@ -111,18 +111,18 @@
       addCart() {
         const _this = this
         const api = `${process.env.APIPATH}/cart`
-        // _this.isLoading = true
+        _this.isLoading = true
         let data = Object.assign({}, _this.product);
         data.qty = _this.qty
         data.id = ''
 
         _this.$http.post(api, data).then((response) => {
 
-
           _this.qty = 1
           _this.$bus.$emit('cartlength', {
             length: 1
           })
+          _this.isLoading = false
         })
       }
     },

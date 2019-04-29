@@ -89,11 +89,12 @@
       getProducts() {
         const _this = this
         const api = `${process.env.APIPATH}/product?is_enabled=1`
-        _this.isLoading = true
+        // _this.isLoading = true
         this.$http.get(api).then((response) => {
           _this.products = response.data
-          _this.isLoading = false
-
+          setTimeout(() => {
+            _this.isLoading = false
+          }, 500)
         })
       },
       getProduct(id) {
