@@ -8,7 +8,11 @@ module.exports = {
   dev: {
     // Paths
     assetsSubDirectory: 'static',
+<<<<<<< HEAD
     assetsPublicPath: '/',
+=======
+    assetsPublicPath: './',
+>>>>>>> gh-pages
     proxyTable: {},
 
     // Various Dev Server settings
@@ -42,8 +46,13 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
+<<<<<<< HEAD
     assetsSubDirectory: 'static',
     // assetsPublicPath: './',
+=======
+    assetsSubDirectory: './static',
+    assetsPublicPath: './',
+>>>>>>> gh-pages
 
     /**
      * Source Maps
