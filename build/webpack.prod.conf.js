@@ -46,15 +46,9 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: utils.assetsPath('css/[name].[contenthash].css'),
       // Setting the following option to `false` will not extract CSS from codesplit chunks.
       // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
-<<<<<<< HEAD
       // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,
       // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
       allChunks: true
-=======
-      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`, 
-      // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
-      allChunks: true,
->>>>>>> gh-pages
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
@@ -73,11 +67,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-<<<<<<< HEAD
         removeAttributeQuotes: false
-=======
-        removeAttributeQuotes: true
->>>>>>> gh-pages
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
@@ -91,22 +81,12 @@ const webpackConfig = merge(baseWebpackConfig, {
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-<<<<<<< HEAD
       minChunks(module) {
-=======
-      minChunks (module) {
->>>>>>> gh-pages
         // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
-<<<<<<< HEAD
           module.resource.indexOf(path.join(__dirname, '../node_modules')) === 0
-=======
-          module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
-          ) === 0
->>>>>>> gh-pages
         )
       }
     }),
@@ -145,13 +125,7 @@ if (config.build.productionGzip) {
       asset: '[path].gz[query]',
       algorithm: 'gzip',
       test: new RegExp(
-<<<<<<< HEAD
         '\\.(' + config.build.productionGzipExtensions.join('|') + ')$'
-=======
-        '\\.(' +
-        config.build.productionGzipExtensions.join('|') +
-        ')$'
->>>>>>> gh-pages
       ),
       threshold: 10240,
       minRatio: 0.8
@@ -160,12 +134,8 @@ if (config.build.productionGzip) {
 }
 
 if (config.build.bundleAnalyzerReport) {
-<<<<<<< HEAD
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
     .BundleAnalyzerPlugin
-=======
-  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
->>>>>>> gh-pages
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 

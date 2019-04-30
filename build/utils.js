@@ -79,11 +79,7 @@ exports.cssLoaders = function(options) {
 }
 
 // Generate loaders for standalone style files (outside of .vue)
-<<<<<<< HEAD
 exports.styleLoaders = function (options) {
-=======
-exports.styleLoaders = function(options) {
->>>>>>> gh-pages
   const output = []
   const loaders = exports.cssLoaders(options)
 
