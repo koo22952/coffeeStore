@@ -10,7 +10,7 @@
           </span>
         </li>
         <li>
-          {{product.category}}
+          <router-link to="/productlist">{{product.category}}</router-link>
           <span>
             <i class="fas fa-chevron-right"></i>
           </span>
