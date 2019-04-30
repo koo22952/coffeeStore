@@ -1,0 +1,49 @@
+// 載入bootstrap
+@import '~bootstrap/scss/functions'; //載入套用變數的方法
+@import './helpers/variables'; //自定義的變數
+@import '~bootstrap/scss/bootstrap';
+
+// 載入字型
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Noto Sans TC', 'Helvetica Neue', sans-serif,
+    'Microsoft JhengHei';
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background: #ececec;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  color: #32312f;
+  // z-index: 1;
+}
+
+a {
+  text-decoration: none;
+  color: #32312f;
+  transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+  color: #b83152;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+ul,
+li {
+  padding: 0;
+  margin: 0;
+}
