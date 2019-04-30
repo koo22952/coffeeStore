@@ -262,18 +262,18 @@
         data.total = _this.cartTotal
         data.products = _this.cartList
         // data.menber
-        // this.$validator.validate().then((result) => {
-        // if (result) {
-        _this.isLoading = true
-        _this.$http.post(api, data).then((response) => {
-          _this.$router.push(`/confirm/${response.data.id}`)
-          _this.$bus.$emit('fakecartlength', {})
-          _this.isLoading = false
+        this.$validator.validate().then((result) => {
+          if (result) {
+            _this.isLoading = true
+            _this.$http.post(api, data).then((response) => {
+              _this.$router.push(`/confirm/${response.data.id}`)
+              _this.$bus.$emit('fakecartlength', {})
+              _this.isLoading = false
+            })
+          } else {
+            // console.log('欄位不完整')
+          }
         })
-        // } else {
-        // console.log('欄位不完整')
-        // }
-        // })
       },
     },
     created() {

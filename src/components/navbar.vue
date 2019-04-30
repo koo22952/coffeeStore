@@ -257,7 +257,7 @@
         const api = `${process.env.APIPATH}/cart`
 
         _this.$http.get(api).then((response) => {
-          console.log(response.data)
+          // console.log(response.data)
           if (item) {
             _this.cartList = response.data
           } else {

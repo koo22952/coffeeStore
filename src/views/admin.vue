@@ -8,11 +8,11 @@
         <div class="w-100 row py-2">
           <div class="col d-flex justify-content-between">
             <ul class="navbar-nav d-flex flex-row">
-              <li class="nav-item mr-3">
+              <!-- <li class="nav-item mr-3">
                 <router-link class="nav-link" to="/admin">
                   <i class="fas fa-home mr-1"></i>後台首頁
                 </router-link>
-              </li>
+              </li>-->
               <li class="nav-item mr-3">
                 <router-link class="nav-link" to="/admin/productsManager">
                   <i class="fas fa-archive mr-1"></i>產品列表

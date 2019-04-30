@@ -182,8 +182,8 @@
             const id = n.id
             const url = `${api}/${id}`
             _this.$http.delete(url).then((response) => {
-              console.log('del')
-              console.log(response.data)
+              // console.log('del')
+              // console.log(response.data)
               _this.$bus.$emit('fakecartlength', {})
             })
           })

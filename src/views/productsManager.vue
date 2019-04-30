@@ -351,7 +351,7 @@
           } else {
             $('#productModal').modal('hide')
             _this.getProducts();
-            console.log('新增失敗')
+            // console.log('新增失敗')
           }
         })
       },

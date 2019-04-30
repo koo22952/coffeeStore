@@ -8,7 +8,9 @@
         <svg class="bg_h_right position-absolute">
           <bg-header-right></bg-header-right>
         </svg>
-        <div class="col-10 offset-1 col-lg-5 order-0 order-lg-1">
+        <div
+          class="col-12 offset-lg-1 d-lg-block col-lg-5 order-1 d-flex justify-content-center align-items-center flex-column"
+        >
           <h3 class="title_header">家，就是你專屬咖啡館</h3>
           <div class="d-inline-block">
             <p class="title_p mt-4">
@@ -17,11 +19,11 @@
             </p>
           </div>
           <div class="text-center mt-5">
-            <a href="#" class="btn">品咖啡</a>
+            <router-link to="/productlist" class="btn">品咖啡</router-link>
           </div>
         </div>
         <div
-          class="coffeeCup_img col-12 col-lg-5 offset-lg-1 order-1 order-lg-0 d-flex align-items-center justify-content-center"
+          class="coffeeCup_img col-md-5 offset-md-1 order-0 d-none d-lg-flex align-items-center justify-content-center"
         >
           <img class="position-absolute mt-6 mt-lg-0" src="../assets/img/coffee_bg.png">
         </div>
@@ -37,7 +39,7 @@
     name: '',
     components: {
       bgHeaderLeft,
-      bgHeaderRight
+      bgHeaderRight,
     }
   }
 </script>
@@ -98,7 +100,7 @@
     // max-width: 600px;
     // width: 100vmin;
     img {
-      width: 135%;
+      width: 125%;
       top: -100%;
       left: -20%;
     }
@@ -112,7 +114,7 @@
     }
     .top_header {
       .title_header {
-        font-size: 2.7vw;
+        font-size: 3vw;
       }
       .title_p {
         font-size: 1.5vw;
@@ -126,4 +128,54 @@
       }
     }
   }
+
+  @media (max-width: 991px) {
+    .top_header {
+      .title_header {
+        font-size: 36px;
+      }
+      .title_p {
+        text-align: center;
+        font-size: 18px;
+      }
+      .btn {
+        padding: 20px;
+        text-align: center;
+        width: 150px;
+        font-size: 20px;
+      }
+      .bg_h_left {
+        width: 100%;
+        height: 100%;
+      }
+      // .bg_h_right {
+      //   top: 40%;
+      //   right: -47%;
+      //   width: 63%;
+      //   height: 82%;
+      // }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .top_header {
+      .title_header {
+        font-size: 7.5vw;
+      }
+      .title_p {
+        font-size: 3.5vw;
+      }
+      .bg_h_left {
+        width: 140%;
+        height: 135%;
+      }
+      .bg_h_right {
+        top: 53%;
+        right: -55%;
+        width: 75%;
+        height: 66%;
+      }
+    }
+  }
 </style>
+

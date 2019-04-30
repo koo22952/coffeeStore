@@ -136,11 +136,11 @@
         this.$validator.validate().then((result) => {
           if (result) {
             // do stuff if not valid.
-            console.log('發送成功')
+            // console.log('發送成功')
             _this.form = {}
 
           } else {
-            console.log('欄位不完整')
+            // console.log('欄位不完整')
           }
         })
       },

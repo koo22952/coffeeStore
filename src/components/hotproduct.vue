@@ -89,12 +89,14 @@
       getProducts() {
         const _this = this
         const api = `${process.env.APIPATH}/product?is_enabled=1`
-        // _this.isLoading = true
+        _this.isLoading = true
         this.$http.get(api).then((response) => {
           _this.products = response.data
-          setTimeout(() => {
-            _this.isLoading = false
-          }, 500)
+          // setTimeout(() => {
+          _this.isLoading = false
+          // }, 500)
+        }).catch((error) => {
+          _this.isLoading = false
         })
       },
       getProduct(id) {
@@ -198,6 +200,7 @@
           cursor: pointer;
           position: relative;
           min-height: 260px;
+          max-width: 260px;
           margin: 0 auto;
           padding: 10px;
           &::after {

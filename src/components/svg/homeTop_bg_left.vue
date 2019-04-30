@@ -8,13 +8,50 @@
   >
     <g id="bg_homeTop_right">
       <path
+        class="my-shape"
         id="bg_homeTop_right_2"
         d="M631.647 566.413C523.548 675.832 341.5 696 191 696C-75.9801 696 -250.93 562.301 -446.116 369.469C-801.724 18.15 -895.746 -463.276 -656.122 -705.825C-416.497 -948.375 66.0334 -860.2 421.641 -508.881C663.861 -269.582 872 -78 784 275C773.522 317.03 708.053 489.074 631.647 566.413Z"
-        fill="#DBA976"
+        fill="#dba976"
       ></path>
     </g>
   </svg>
 </template>
+
+
+<style lang="scss" scoped>
+  // // .my-shape {
+  // //   transition: all 1.3s;
+  // // }
+
+  // // svg:hover .my-shape {
+  // //   fill: peachpuff;
+  // //   transform: scale(0.9);
+  // // }
+
+  // @keyframes moveEyes {
+  //   20% {
+  //     // transform: rotate(5deg);
+  //     fill: #ebb178;
+  //     // transform: translate(-35px, -10px);
+  //   }
+  //   80% {
+  //     fill: #fcbf83;
+  //     // transform: translate(-50px, -100px);
+  //   }
+  //   // 100% {
+
+  //   // }
+  // }
+
+  // // infinite 重複執行
+  // .my-shape {
+  //   fill: #dba976;
+
+  //   animation: moveEyes 10s infinite;
+  //   // transform-origin: 325px 350px;
+  // }
+</style>
+
 
 
   <svg

@@ -34,10 +34,10 @@
               <a href="#" @click.prevent="filterCategories('典藏單品')">典藏單品</a>
             </li>
             <li class="item">
-              <a href="#" @click.prevent="filterCategories('職人嚴選')">職人嚴選</a>
+              <a href="#" @click.prevent="filterCategories('風味之選')">風味之選</a>
             </li>
             <li class="item">
-              <a href="#" @click.prevent="filterCategories('濾掛咖啡')">濾掛咖啡</a>
+              <a href="#" @click.prevent="filterCategories('義式濃縮')">義式濃縮</a>
             </li>
           </ul>
         </div>
@@ -204,9 +204,9 @@
           // console.log(response.data)
           _this.products = response.data
           _this.filterData = response.data
-          setTimeout(() => {
-            _this.isLoading = false
-          }, 500);
+          // setTimeout(() => {
+          _this.isLoading = false
+          // }, 500);
         })
       },
       getProduct(id) {
@@ -253,7 +253,7 @@
         height: 100%;
         background-position: 50% 50%;
         background-size: cover;
-        background-image: url("../assets/img/product_list_bg1.jpg");
+        background-image: url("../assets/img/product_list_bg.jpg");
       }
     }
     .menu {

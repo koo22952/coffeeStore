@@ -2,7 +2,7 @@
   <section>
     <div class="noresons">
       <div class="noreson">
-        <noreson></noreson>
+        <soEasy></soEasy>
       </div>
       <div class="bg">
         <bg/>
@@ -15,13 +15,13 @@
 </template>
 
 <script>
-  import noreson from '@/components/svg/noreson'
-  import bg from '@/components/svg/noreson_bg'
+  import soEasy from '@/components/svg/soEasy'
+  import bg from '@/components/svg/soEasy_bg'
 
 
   export default {
     components: {
-      noreson,
+      soEasy,
       bg
     }
   }
@@ -32,7 +32,7 @@
     width: 100%;
     min-height: 550px;
     position: relative;
-    margin: 140px 0px 20px 0px;
+    margin: 90px 0px 20px 0px;
     .bg,
     .noreson {
       position: absolute;
@@ -48,10 +48,7 @@
     }
     .noreson {
       max-width: 79px;
-      max-height: 286px;
-      // width: 100%;
-      // min-height: 160px;
-      // height: 100%;
+      max-height: 328px;
       z-index: 1;
     }
   }

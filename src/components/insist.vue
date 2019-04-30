@@ -1,16 +1,10 @@
 <template>
-  <div class="bgList">
-    <div class="bg_one">
-      <bg/>
-    </div>
-    <div class="bg_two">
-      <bg/>
-    </div>
+  <div>
     <div class="insist">
       <div class="insistTitle">
         <h5>我們的三大堅持</h5>
       </div>
-      <p>每分每秒每分每秒每分每秒只為您著想。</p>
+      <p>每日每分每秒每時每刻，只為您著想。</p>
       <div class="insistList">
         <div>
           <div class="img">
@@ -59,12 +53,10 @@
 
 <script>
   import contactUs from '@/components/svg/contactUs_bg'
-  import bg from '@/components/svg/small_bg'
 
   export default {
     components: {
       contactUs,
-      bg
     },
     methods: {
       contact() {
@@ -185,28 +177,7 @@
     }
   }
 
-  .bgList {
-    height: auto;
-    position: relative;
-  }
-
-  .bg_one {
-    position: absolute;
-    top: -52%;
-    height: 65%;
-    width: 70%;
-    right: -45%;
-  }
-  .bg_two {
-    position: absolute;
-    top: 0%;
-    height: 48%;
-    width: 48%;
-    left: -30%;
-    transform: rotate(-35deg);
-  }
-
-  @media (max-width: 560px) {
+  @media (max-width: 650px) {
     .contactUs {
       .content {
         display: flex;
