@@ -5,10 +5,16 @@
       <!-- swiper -->
       <swiper class="product_img" :options="swiperOption">
         <swiper-slide>
-          <div class="img"></div>
+          <div class="img_one"></div>
         </swiper-slide>
         <swiper-slide>
-          <div class="img"></div>
+          <div class="img_two"></div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="img_three"></div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="img_four"></div>
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -249,11 +255,25 @@
     .product_img {
       width: 100%;
       height: 480px;
-      .img {
+      .img_one,
+      .img_two,
+      .img_three,
+      .img_four {
         height: 100%;
         background-position: 50% 50%;
         background-size: cover;
-        background-image: url("../assets/img/product_list_bg.jpg");
+      }
+      .img_one {
+        background-image: url("../assets/img/slide_1.jpg");
+      }
+      .img_two {
+        background-image: url("../assets/img/slide_2.jpg");
+      }
+      .img_three {
+        background-image: url("../assets/img/slide_3.jpg");
+      }
+      .img_four {
+        background-image: url("../assets/img/slide_4.jpg");
       }
     }
     .menu {

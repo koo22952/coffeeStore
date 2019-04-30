@@ -447,7 +447,7 @@
 
   .row .three {
     z-index: 5000;
-    padding: 5px 0px;
+    padding: 5px 5px 5px 10px;
     box-sizing: border-box;
     // background-color: #2c3e50;
     color: #9a2945;
