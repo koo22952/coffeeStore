@@ -1,8 +1,6 @@
-// https://github.com/michael-ciniawsky/postcss-load-config
-
 module.exports = {
   lintOnSave: false,
-  baseUrl: 'coffee/dist',
+  baseUrl: 'coffeeStore/dist',
   outputDir: undefined,
   assetsDir: undefined,
   runtimeCompiler: undefined,
