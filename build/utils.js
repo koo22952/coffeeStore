@@ -42,15 +42,8 @@ exports.cssLoaders = function(options) {
   }
 
   // generate loader string to be used with extract text plugin
-<<<<<<< HEAD
   function generateLoaders (loader, loaderOptions) {
     const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
-=======
-  function generateLoaders(loader, loaderOptions) {
-    const loaders = options.usePostCSS
-      ? [cssLoader, postcssLoader]
-      : [cssLoader]
->>>>>>> gh-pages
 
     if (loader) {
       loaders.push({
@@ -66,12 +59,7 @@ exports.cssLoaders = function(options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
-<<<<<<< HEAD
         fallback: 'vue-style-loader'
-=======
-        fallback: 'vue-style-loader',
-        publicPath: '../../'
->>>>>>> gh-pages
       })
     } else {
       return ['vue-style-loader'].concat(loaders)
