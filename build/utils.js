@@ -4,27 +4,16 @@ const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
 
-<<<<<<< HEAD
-exports.assetsPath = function (_path) {
-  const assetsSubDirectory = process.env.NODE_ENV === 'production'
-    ? config.build.assetsSubDirectory
-    : config.dev.assetsSubDirectory
-=======
 exports.assetsPath = function(_path) {
   const assetsSubDirectory =
     process.env.NODE_ENV === 'production'
       ? config.build.assetsSubDirectory
       : config.dev.assetsSubDirectory
->>>>>>> gh-pages
 
   return path.posix.join(assetsSubDirectory, _path)
 }
 
-<<<<<<< HEAD
-exports.cssLoaders = function (options) {
-=======
 exports.cssLoaders = function(options) {
->>>>>>> gh-pages
   options = options || {}
 
   const cssLoader = {
@@ -42,8 +31,10 @@ exports.cssLoaders = function(options) {
   }
 
   // generate loader string to be used with extract text plugin
-  function generateLoaders (loader, loaderOptions) {
-    const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
+  function generateLoaders(loader, loaderOptions) {
+    const loaders = options.usePostCSS
+      ? [cssLoader, postcssLoader]
+      : [cssLoader]
 
     if (loader) {
       loaders.push({
@@ -59,7 +50,8 @@ exports.cssLoaders = function(options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
-        fallback: 'vue-style-loader'
+        fallback: 'vue-style-loader',
+        publicPath: '../../'
       })
     } else {
       return ['vue-style-loader'].concat(loaders)
@@ -79,7 +71,7 @@ exports.cssLoaders = function(options) {
 }
 
 // Generate loaders for standalone style files (outside of .vue)
-exports.styleLoaders = function (options) {
+exports.styleLoaders = function(options) {
   const output = []
   const loaders = exports.cssLoaders(options)
 
