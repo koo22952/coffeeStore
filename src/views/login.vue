@@ -89,7 +89,7 @@
                 })
                 localStorage.setItem('userId', response.data[0].id)
                 if (response.data[0].id == 1) {
-                  _this.$router.push('/admin')
+                  _this.$router.push('/admin/productsManager')
                 } else {
                   _this.$router.push('/')
                 }
