@@ -57,7 +57,7 @@
 
 ### 結帳資訊
 + 顯示購物車細節，有收合選項，自動帶出商品合計金額；使用操作的步驟說明
-![](https://upload.cc/i1/2019/05/02/qxMbTc.png)
+![](https://upload.cc/i1/2019/05/02/CAYEjU.png)
 ![](https://upload.cc/i1/2019/05/02/qxMbTc.png)
 
 ### 表單驗證
