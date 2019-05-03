@@ -49,9 +49,9 @@
           spaceBetween: 10,
           loop: true,
           speed: 600,
-          // autoplay: {
-          //   delay: 5000,
-          // },
+          autoplay: {
+            delay: 4000,
+          },
           pagination: {
             el: '.swiper-pagination',
             dynamicBullets: true

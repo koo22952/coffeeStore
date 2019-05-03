@@ -1,6 +1,6 @@
 <template>
   <div class="orderbox">
-    <loading :active.sync="isLoading"></loading>
+    <loading loader="bars" color="#32312f" :active.sync="isLoading"></loading>
     <table class="table">
       <thead>
         <tr style="background: #c9c9c9;">

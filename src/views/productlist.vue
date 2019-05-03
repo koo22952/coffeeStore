@@ -264,7 +264,7 @@
         background-size: cover;
       }
       .img_one {
-        background-image: url("../assets/img/slide_1.jpg");
+        background-image: url("../assets/img/slide_4.jpg");
       }
       .img_two {
         background-image: url("../assets/img/slide_2.jpg");
@@ -273,7 +273,7 @@
         background-image: url("../assets/img/slide_3.jpg");
       }
       .img_four {
-        background-image: url("../assets/img/slide_4.jpg");
+        background-image: url("../assets/img/slide_1.jpg");
       }
     }
     .menu {
