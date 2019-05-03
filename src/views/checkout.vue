@@ -77,7 +77,7 @@
                     </th>
                     <td class="align-middle">{{item.title}}</td>
                     <td class="align-middle text-center">{{item.qty}}</td>
-                    <td class="align-middle text-right">{{item.qty*item.price | currency}}</td>
+                    <td class="align-middle text-right">{{item.price | currency}}</td>
                   </tr>
                   <tr>
                     <td colspan="4" class="text-right align-bottom">合計</td>
@@ -204,12 +204,12 @@
           let m = Object.assign({}, n);
           m.price
           if (m.sale_price == undefined || m.sale_price == "") {
-            m.sale_price = m.origin_price
+            m.sale_price = parseInt(m.origin_price * m.qty)
           }
           if (parseInt(m.origin_price) > parseInt(m.sale_price)) {
-            m.price = m.sale_price
+            m.price = parseInt(m.sale_price * m.qty)
           } else {
-            m.price = m.origin_price
+            m.price = parseInt(m.origin_price * m.qty)
           }
           return m
         })
@@ -275,9 +275,25 @@
           }
         })
       },
+      getUserMeg() {
+        const _this = this
+        let id = localStorage.getItem('userId')
+        const api = `${process.env.APIPATH}/menber/${id}`
+        if (id) {
+          _this.$http.get(api).then(response => {
+            console.log(response.data)
+            _this.form.user.name = response.data.name
+            _this.form.user.email = response.data.Email
+          })
+        } else {
+          return
+        }
+
+      }
     },
     created() {
       this.getcart()
+      this.getUserMeg()
       // 接收到cart有做更新的動作,在這邊更新表單內容
       this.$bus.$on('delitem', event => {
         this.getcart();
