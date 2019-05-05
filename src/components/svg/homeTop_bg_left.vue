@@ -19,35 +19,34 @@
 
 
 <style lang="scss" scoped>
-  // // .my-shape {
-  // //   transition: all 1.3s;
-  // // }
-
-  // // svg:hover .my-shape {
-  // //   fill: peachpuff;
-  // //   transform: scale(0.9);
-  // // }
-
-  // @keyframes moveEyes {
-  //   20% {
-  //     // transform: rotate(5deg);
-  //     fill: #ebb178;
-  //     // transform: translate(-35px, -10px);
-  //   }
-  //   80% {
-  //     fill: #fcbf83;
-  //     // transform: translate(-50px, -100px);
-  //   }
-  //   // 100% {
-
-  //   // }
+  // .my-shape {
+  //   transition: all 1.3s;
   // }
 
-  // // infinite 重複執行
+  // svg:hover .my-shape {
+  //   fill: peachpuff;
+  //   transform: scale(0.9);
+  // }
+
+  // @keyframes moveEyes {
+  //   0% {
+  //     // transform: rotate(10deg);
+  //     opacity: 0;
+  //     // transform: translate(-770px, -770px);
+  //   }
+  // 60% {
+  //   // transform: rotate(10deg);
+  //   opacity: 0.7;
+  //   // transform: translate(-770px, -770px);
+  // }
+  // }
+
+  // // // infinite 重複執行
   // .my-shape {
   //   fill: #dba976;
-
-  //   animation: moveEyes 10s infinite;
+  //   opacity: 1;
+  //   // transform: translate(-500px, -550px);
+  //   animation: moveEyes 5s;
   //   // transform-origin: 325px 350px;
   // }
 </style>

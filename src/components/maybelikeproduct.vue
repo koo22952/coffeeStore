@@ -89,10 +89,10 @@
         // console.log(this.$route.params.id)
         //不包含網頁已經顯示的ID
         const api = `${process.env.APIPATH}/product?id_ne=${this.$route.params.id}&is_enabled=1`
-        // _this.isLoading = true
+        _this.isLoading = true
         _this.$http.get(api).then((response) => {
           _this.products = response.data
-          // _this.isLoading = false
+          _this.isLoading = false
         })
       },
       getProduct(id) {

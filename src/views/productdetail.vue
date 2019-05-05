@@ -90,12 +90,12 @@
         const _this = this
         // console.log(_this.$route.params)
         const api = `${process.env.APIPATH}/product/${_this.$route.params.id}`
-        _this.isLoading = true
+        // _this.isLoading = true
         this.$http.get(api).then((response) => {
           _this.product = response.data
-          setTimeout(() => {
-            _this.isLoading = false
-          }, 500);
+          // setTimeout(() => {
+          // _this.isLoading = false
+          // }, 500);
         })
       },
       // 運算點選時加減

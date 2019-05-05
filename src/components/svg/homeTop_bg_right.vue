@@ -8,6 +8,7 @@
   >
     <g id="bg_homeTop_right">
       <ellipse
+        class="my-shape"
         id="bg_homeTop_right_2"
         cx="300.877"
         cy="285.108"
@@ -19,6 +20,38 @@
     </g>
   </svg>
 </template>
+
+
+
+<style lang="scss" scoped>
+  // // .my-shape {
+  // //   transition: all 1.3s;
+  // // }
+
+  // // svg:hover .my-shape {
+  // //   fill: peachpuff;
+  // //   transform: scale(0.9);
+  // // }
+
+  // @keyframes moveEyes {
+  //   0% {
+  //     // transform: rotate(10deg);
+  //     opacity: 0;
+  //     // transform: translate(75px, 0px);
+  //   }
+  // }
+
+  // // // infinite 重複執行
+  // .my-shape {
+  //   fill: #dba976;
+  //   opacity: 1;
+  //   // transform: translate(-500px, -550px);
+  //   animation: moveEyes 8s;
+  //   // transform-origin: 325px 350px;
+  // }
+  // //
+  // //
+</style>
 
 
   <svg
