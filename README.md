@@ -1,2 +1,3 @@
-## Demo
-[https://koo22952.github.io/coffeeStore/#/](https://koo22952.github.io/coffeeStore/#/)
+## 咖啡豆電商
+
+資策會畢業專題
