@@ -1,3 +1,3 @@
 ## 咖啡豆電商網站
 
-資策會成果發表作品
+https://koo22952.github.io/coffeeStore/#/
